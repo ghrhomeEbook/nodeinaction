@@ -23,7 +23,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session());
+app.use(session({
+    secret: 'shoutbox',
+    cookie: { maxAge: 600000 },
+}));
 app.use(messages);
 app.use(express.static(path.join(__dirname, 'public')));
 

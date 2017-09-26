@@ -1,5 +1,7 @@
 var express = require('express');
 var regSubmit=require("./register_submit")
+var login=require("./login")
+var logout=require('./logout')
 
 var router = express.Router();
 
@@ -42,7 +44,22 @@ router.route("/register")
             title: 'register'
         });
     }).post(function(req,res,next){
+        console.log(req.body.user)
+        console.log(regSubmit)
         regSubmit(req,res,next);
     });
 
+router.route("/login")
+    .get(function(req,res,next){
+        res.render('user/login', {
+            title: 'Login'
+        });
+    }).post(function(req,res,next){
+        login(req,res,next);
+});
+
+router.route("/logout")
+    .get(function(req,res,next){
+       logout(req,res,next);
+});
 module.exports = router;

@@ -6,6 +6,8 @@ exports.form = function(req, res){
 
 exports.submit = function(req, res, next){
   var data = req.body.user;
+  console.log("--------data");
+  console.log(data);
   User.getByName(data.name, function(err, user){
     if (err) return next(err);
 
