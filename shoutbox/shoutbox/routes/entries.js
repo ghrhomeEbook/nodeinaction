@@ -3,6 +3,7 @@
  */
 
 var express = require('express');
+var page=require("../lib/middleware/page")
 var Entry=require("../lib/entry");
 var EntryFunc=require('./entries/entryFunc')
 var router = express.Router();
@@ -16,7 +17,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.route("/post")
-    .get(function(req,res,next){
+    .get(page(Entry.count,5),function(req,res,next){
         res.render('entries/post', {
             title: 'post'
         });
