@@ -3,6 +3,7 @@
  */
 
 var express = require('express');
+var Entry=require("../lib/entry");
 var EntryFunc=require('./entries/entryFunc')
 var router = express.Router();
 
@@ -20,7 +21,13 @@ router.route("/post")
             title: 'post'
         });
     }).post(function(req,res,next){
-        var data=req.body.entry;
+
+        console.log("entry submit-----------------------")
+        console.log(req.body);
+        console.log(req.body.entry);
+        console.log("entry submit-----------------------")
+
+        var data=req.body;
         var entry=new Entry({
             'username':res.locals.user.name,
             'title':data.title,
@@ -28,7 +35,7 @@ router.route("/post")
         });
         entry.save(function(err){
             if(err) return next(err);
-            res.redirect('/');
+            res.redirect('/entries/');
         })
 });
 
