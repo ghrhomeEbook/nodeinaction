@@ -1,7 +1,7 @@
 var express = require('express');
-var regSubmit=require("./register_submit")
-var login=require("./login")
-var logout=require('./logout')
+var regSubmit=require("./users/register_submit")
+var login=require("./users/login")
+var logout=require('./users/logout')
 
 var router = express.Router();
 

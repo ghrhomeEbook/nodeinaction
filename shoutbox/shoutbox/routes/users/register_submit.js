@@ -1,7 +1,7 @@
 /**
  * Created by whobird on 17/9/26.
  */
-var User=require("../lib/user");
+var User=require("../../lib/user");
 
 module.exports=function(req,res,next){
     var data=req.body;

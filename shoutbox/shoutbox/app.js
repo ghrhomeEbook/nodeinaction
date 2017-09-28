@@ -7,9 +7,10 @@ var bodyParser = require('body-parser');
 
 var session=require('express-session');
 var messages=require('./lib/messages');
-
+var usersMiddleWare=require('./lib/middleware/user');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var entries=require('./routes/entries');
 
 var app = express();
 
@@ -27,11 +28,13 @@ app.use(session({
     secret: 'shoutbox',
     cookie: { maxAge: 600000 },
 }));
+app.use(usersMiddleWare)
 app.use(messages);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/entries',entries);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
