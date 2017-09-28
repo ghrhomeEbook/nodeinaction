@@ -28,7 +28,7 @@ app.use(session({
     secret: 'shoutbox',
     cookie: { maxAge: 600000 },
 }));
-app.use(usersMiddleWare)
+app.use(usersMiddleWare);
 app.use(messages);
 app.use(express.static(path.join(__dirname, 'public')));
 

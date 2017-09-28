@@ -20,7 +20,10 @@ router.route("/post")
         res.render('entries/post', {
             title: 'post'
         });
-    }).post(function(req,res,next){
+    }).post(
+        requireEntryTitle,
+        requireEntryTitleLengthAbove(4),
+        function(req,res,next){
 
         console.log("entry submit-----------------------")
         console.log(req.body);
@@ -38,6 +41,28 @@ router.route("/post")
             res.redirect('/entries/');
         })
 });
+
+function requireEntryTitle(req,res,next){
+    var title=req.body.title;
+    if(title){
+        next();
+    }else{
+        res.error("title is required")
+        res.redirect('back');
+    }
+}
+
+function requireEntryTitleLengthAbove(len){
+    return function(req,res,next){
+        var title=req.body.title;
+        if(title.length>len){
+            next();
+        }else{
+            res.error('title must be longer than: ' +len);
+            res.redirect('back');
+        }
+    }
+}
 
 
 
