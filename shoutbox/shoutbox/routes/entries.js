@@ -10,14 +10,10 @@ var router = express.Router();
 
 
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-    //res.send('entry route ---');
-    EntryFunc.list(req,res,next);
-});
+
 
 router.route("/post")
-    .get(page(Entry.count,5),function(req,res,next){
+    .get(function(req,res,next){
         res.render('entries/post', {
             title: 'post'
         });
@@ -41,6 +37,12 @@ router.route("/post")
             if(err) return next(err);
             res.redirect('/entries/');
         })
+});
+
+/* GET users listing. */
+router.get('/:page?',page(Entry.count,5), function(req, res, next) {
+    //res.send('entry route ---');
+    EntryFunc.list(req,res,next);
 });
 
 function requireEntryTitle(req,res,next){

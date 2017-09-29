@@ -35,7 +35,7 @@ Entry.getRange=function(from,to,fn){
 }
 
 Entry.count=function(fn){
-    db.llen('entries',fun);
+    db.llen('entries',fn);
 }
 
 
