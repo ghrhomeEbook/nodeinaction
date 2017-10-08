@@ -132,3 +132,10 @@ tobi.save(function(err){
 
     console.log('user id %d', tobi.id);
 });*/
+
+User.prototype.toJSON=function(){
+    return {
+        id:this.id,
+        name:this.name
+    }
+}

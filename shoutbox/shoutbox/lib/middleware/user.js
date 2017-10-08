@@ -5,6 +5,10 @@
 var User=require('../user');
 
 module.exports=function(req,res,next){
+
+    if(req.remoteUser){
+        res.locals.user=req.remoteUesr;
+    }
     var uid=req.session.uid;
 
     if(!uid) return next();
